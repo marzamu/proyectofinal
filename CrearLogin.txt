@@ -1,0 +1,66 @@
+------CREAR LOGING PASO POR PASO------
+PASO 1:  composer create-project --prefer-dist laravel/laravel login "5.5.*"
+PASO 2:  php artisan make:auth
+PASO 3:  php artisan migrate
+
+CÓMO CREAR UN LOGIN (AUTO REGISTER) EN LARAVEL
+Bienvenido a este nuevo artículo donde aprenderás cómo crear un login (auto register) en Laravel, muchos sabemos lo difícil que puede ser llegar crear un login para nuestras aplicaciones, más aún cuando estamos empezando o dando nuestros primero pasos en la programación, es por eso que este artículo vamos a ver paso a paso como crear un login y registro de usuario usando Laravel 5.5 , voy ha mostrarte lo fácil que es que en un pestañear de ojos ya estará listo nuestro registro y login de usuario.
+
+Si todavía no estás familiarizado con laravel puedes ver algunos artículos anteriores que te ayudaran a comprender este maravilloso framework puedes ver Cómo instalar y configurar Laravel 5.5 y Cómo crear un crud en Laravel 5.5 desde cero.
+
+Al final así es como quedará nuestro login de usuario.
+
+
+
+REQUISITOS
+Laravel Framework 5.5.
+Base de datos MySQL creada para ser utilizada por su aplicación.
+Configuración archivo .env para establecer las propiedades de la base de datos.
+INSTALACIÓN DE LARAVEL VÍA COMPOSER
+Previamente debemos tener instalado XAMPP y en la ubicación C:\xampp\htdocs abrimos una ventana de comandos e instalamos usando el siguientes comando:
+
+composer create-project --prefer-dist laravel/laravel login "5.5.*"
+1
+composer create-project --prefer-dist laravel/laravel login "5.5.*"
+Recuerda que debes cambiar la configuración para la base de datos, usuario y clave, si aún no lo has hecho puedes ver el artículo anterior Cómo instalar y configurar Laravel 5.5 donde explico como hacerlo. El nombre de la base de datos le llamaremos del mismo nombre del proyecto login, posteriormente deberás crear la base de datos en MySQL.
+
+
+
+EJECUTAR EL COMANDO MAKE:AUTH
+Como había mencionado anteriormente Laravel nos da la facilidad de implementar de una manera muy fácil la parte de registro y autenticación de usuario, para esto vamos a ejecutar el siguiente comando:
+
+php artisan make:auth
+1
+php artisan make:auth
+Este comando generará los archivos necesarios del controlador, las vistas y las rutas necesarias para la autenticación. Si ahora abres el archivo routes->web.php puedes ver que se generó también el código Auth::routes() que permite generar las rutas requeridas para la autenticación del usuario.
+
+Además también se creó un controlador llamado Http->Controller->HomeController que implementa un middleware en el constructor que protege las funciones del controlador y son accesibles únicamente cuando el usuario se a logueado.
+
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
+1
+2
+3
+4
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
+Así mismo podemos ver algunos archivos para las vistas generados por el comando auth:
+
+
+
+Si te interesa aprender a desarrollar aplicaciones web con Laravel a continuación te dejo un excelente curso con el cual podrás aprender todo lo que ofrece este maravilloso Framework.
+
+EJECUTAR LAS MIGRACIONES
+Ahora lo que nos queda es ejecutar las migraciones de tal manera que se generen las tablas necesarias para la autenticación.
+
+php artisan migrate
+1
+php artisan migrate
+Ahora se crearon las tablas en la base de datos y prácticamente tenemos listo nuestro registro y login de usuario.
+
+Finalmente puedes probar haciendo el registro de usuario, entrando al dashboard provisional que ofrece Laravel, para esto debes poner lo siguiente en tu navegador localhost/login/register y localhost/login/login para loguearse.
+
